@@ -1,10 +1,7 @@
-import '../styles/GlobalStyles.css';
+import AppRouter from "shared/routes/AppRouter";
 
 function App() {
-  return (
-    <div>
-    </div>
-  );
+  return <AppRouter />;
 }
 
 export default App;
