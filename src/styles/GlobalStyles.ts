@@ -35,13 +35,23 @@ input{
   padding: 0;
 }
 
+input[type="text"]:focus {
+  outline: none;
+  border: none; 
+}
+
 i{
   display: block;
   color: #94979a;
 }
 
+td{
+  vertical-align: top;
+}
+
 ::-webkit-scrollbar{
   height: 5px;
+  width: 5px;
   background-color: #222528;
 }
 ::-webkit-scrollbar-thumb  {

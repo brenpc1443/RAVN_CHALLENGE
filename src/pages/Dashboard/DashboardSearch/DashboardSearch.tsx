@@ -4,7 +4,7 @@ import Icon from "ui/Icon";
 
 const DashboardSearch = () => {
   const [search, setSearch] = useState("");
-  console.log(search);
+  console.log(search.length);
 
   return (
     <StyledContainer>
