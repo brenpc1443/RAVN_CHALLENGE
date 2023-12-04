@@ -3,22 +3,20 @@ import styled from "styled-components";
 import { useQuery } from "@apollo/client";
 import TaskView from "components/TasksView";
 import { columns } from "./utils/columns";
-import { GET_USERS, GET_TASKS } from "shared/services/characterQueries";
-import { User, Task } from "shared/types/schema";
+import { GET_TASKS } from "shared/services/characterQueries";
+import { Task } from "shared/types/schema";
+import { useDashContext } from "shared/context/Context";
 
 const TaskModeBurger = () => {
-  const [users, setUsers] = useState<Array<User>>([]);
-  const [tasks, setTasks] = useState<Array<Task>>([]);
+  const {
+    Filter: { filter },
+  } = useDashContext();
 
-  const { loading: usersLoading, error: usersError } = useQuery(GET_USERS, {
-    onCompleted: (data) => {
-      setUsers(data.users ?? []);
-    },
-  });
+  const [tasks, setTasks] = useState<Array<Task>>([]);
 
   const { loading: tasksLoading, error: tasksError } = useQuery(GET_TASKS, {
     variables: {
-      input: {},
+      input: filter,
     },
     onCompleted: (data) => {
       setTasks(data.tasks ?? []);
@@ -41,14 +39,14 @@ const TaskModeBurger = () => {
           </tr>
         </thead>
         <tbody>
-          {!!usersLoading && (
+          {!!tasksLoading && (
             <tr>
               <td colSpan={columns.length}>
                 <>Loading skeleton</>
               </td>
             </tr>
           )}
-          {!usersError && !usersLoading && (
+          {!tasksError && !tasksLoading && (
             <tr>
               {columns.map(({ id, title }) => {
                 const same = tasks.filter((task) => task.status === title);
@@ -62,14 +60,14 @@ const TaskModeBurger = () => {
               })}
             </tr>
           )}
-          {!!usersError && !usersLoading && (
+          {!!tasksError && !tasksLoading && (
             <tr>
               <td colSpan={columns.length}>
                 <>Error</>
               </td>
             </tr>
           )}
-          {users.length === 0 && !usersLoading && (
+          {tasks.length === 0 && !tasksLoading && (
             <tr>
               <td colSpan={columns.length}>
                 <>is Empty</>

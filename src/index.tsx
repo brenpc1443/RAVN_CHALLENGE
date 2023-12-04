@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./app/App";
 import GlobalStyles from "styles/GlobalStyles";
 import "./styles/GlobalStyles.ts";
+import { Provider } from "shared/context/Context";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -10,7 +11,9 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <BrowserRouter>
-    <GlobalStyles />
-    <App />
+    <Provider>
+      <GlobalStyles />
+      <App />
+    </Provider>
   </BrowserRouter>
 );

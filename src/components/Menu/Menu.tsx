@@ -1,17 +1,30 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useQuery } from "@apollo/client";
 import { useLocation } from "react-router-dom";
 import styled, { css } from "styled-components";
 import RAVN_logo from "../../shared/assets/RAVN_logo.svg";
 import Icon from "ui/Icon";
 import DashboardSearch from "pages/Dashboard/DashboardSearch";
 import DashboardTop from "pages/Dashboard/DashboardTop";
+import { useDashContext } from "shared/context/Context";
+import { GET_USERS } from "shared/services/characterQueries";
 
 type MenuProps = {
   children: JSX.Element;
 };
 
 const Menu = ({ children }: MenuProps) => {
+  const {
+    Users: { setUsers },
+  } = useDashContext();
+
+  useQuery(GET_USERS, {
+    onCompleted: (data) => {
+      setUsers(data.users ?? []);
+    },
+  });
+
   const location = useLocation();
   const currentPath = location.pathname;
 

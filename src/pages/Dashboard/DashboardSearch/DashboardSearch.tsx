@@ -1,17 +1,29 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Icon from "ui/Icon";
+import { useDashContext } from "shared/context/Context";
 
 const DashboardSearch = () => {
+  const {
+    Filter: { setFilter },
+  } = useDashContext();
+
   const [search, setSearch] = useState("");
-  console.log(search.length);
+
+  useEffect(() => {
+    if (search.length > 2) {
+      setFilter({
+        name: search,
+      });
+    }
+  }, [search]);
 
   return (
     <StyledContainer>
       <div className="searchBar">
         <Icon remixClass="ri-search-line" />
         <StyledInput
-          placeholder="Search"
+          placeholder="Search by task name"
           type="text"
           onChange={(e) => setSearch(e.target.value)}
         />
