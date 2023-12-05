@@ -18,11 +18,14 @@ const initialUserState: User = {
 };
 
 export const Context = createContext<{
+  Profile: {
+    profile: User;
+    setProfile: Dispatch<User>;
+  };
   Users: {
     users: User[];
     setUsers: Dispatch<Array<User>>;
   };
-
   Filter: {
     filter: {};
     setFilter: Dispatch<{}>;
@@ -46,19 +49,28 @@ type ProviderProps = {
 
 export const Provider: React.FC<ProviderProps> = ({ children }) => {
   const [users, setUsers] = useState([initialUserState]);
+  const [profile, setProfile] = useState(initialUserState);
   const [filter, setFilter] = useState({});
 
   const clearAll = () => {
+    setProfile(initialUserState);
     setUsers([initialUserState]);
+    setFilter({});
   };
 
   useEffect(() => {
+    setProfile(initialUserState);
     setUsers([initialUserState]);
+    setFilter({});
   }, []);
 
   return (
     <Context.Provider
       value={{
+        Profile: {
+          profile,
+          setProfile,
+        },
         Users: {
           users,
           setUsers,

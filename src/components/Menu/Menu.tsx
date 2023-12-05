@@ -8,7 +8,7 @@ import Icon from "ui/Icon";
 import DashboardSearch from "pages/Dashboard/DashboardSearch";
 import DashboardTop from "pages/Dashboard/DashboardTop";
 import { useDashContext } from "shared/context/Context";
-import { GET_USERS } from "shared/services/characterQueries";
+import { GET_USERS, GET_PROFILE } from "shared/services/characterQueries";
 
 type MenuProps = {
   children: JSX.Element;
@@ -17,11 +17,18 @@ type MenuProps = {
 const Menu = ({ children }: MenuProps) => {
   const {
     Users: { setUsers },
+    Profile: { setProfile },
   } = useDashContext();
 
   useQuery(GET_USERS, {
     onCompleted: (data) => {
       setUsers(data.users ?? []);
+    },
+  });
+
+  useQuery(GET_PROFILE, {
+    onCompleted: (data) => {
+      setProfile(data.profile ?? []);
     },
   });
 

@@ -1,5 +1,7 @@
+import { useState } from "react";
 import styled, { css } from "styled-components";
 import Icon from "ui/Icon";
+import DashboardModal from "../DashboardModals";
 
 type DashboardTopType = {
   clickBurger: boolean;
@@ -7,6 +9,16 @@ type DashboardTopType = {
 };
 
 const DashboardTop = ({ clickBurger, clickLine }: DashboardTopType) => {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const handleClick = () => {
+    setModalIsOpen(true);
+  };
+
+  const onClose = () => {
+    setModalIsOpen(false);
+  };
+
   return (
     <StyledContainer>
       <SwitcherMenu $activeL={clickLine} $activeB={clickBurger}>
@@ -18,10 +30,13 @@ const DashboardTop = ({ clickBurger, clickLine }: DashboardTopType) => {
         </div>
       </SwitcherMenu>
       <ContainerButton>
-        <button>
+        <button onClick={handleClick}>
           <Icon remixClass="ri-add-line" />
         </button>
       </ContainerButton>
+      {modalIsOpen && (
+        <DashboardModal visible={modalIsOpen} onClose={onClose} />
+      )}
     </StyledContainer>
   );
 };

@@ -11,12 +11,14 @@ const DashboardSearch = () => {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    if (search.length > 2) {
+    if (search.length === 0) {
+      setFilter({});
+    } else if (search.length > 2) {
       setFilter({
         name: search,
       });
     }
-  }, [search]);
+  }, [search, setFilter]);
 
   return (
     <StyledContainer>
