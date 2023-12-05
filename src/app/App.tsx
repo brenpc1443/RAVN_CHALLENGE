@@ -1,9 +1,12 @@
-import '../styles/GlobalStyles.css';
+import { ApolloProvider } from "@apollo/client";
+import AppRouter from "shared/routes/AppRouter";
+import { client } from "shared/utils/api/apolloClient";
 
 function App() {
   return (
-    <div>
-    </div>
+    <ApolloProvider client={client}>
+      <AppRouter />
+    </ApolloProvider>
   );
 }
 
