@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 const TaskModeLine = () => {
-    return(<StyledContainer>Line</StyledContainer>)
-}
+  return <StyledContainer>Line</StyledContainer>;
+};
 
-export default TaskModeLine
+export default TaskModeLine;
 
 const StyledContainer = styled.div`
   width: 100%;
