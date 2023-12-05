@@ -1,19 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
 import { useMutation } from "@apollo/client";
 import { FormProvider, useForm, Controller } from "react-hook-form";
 import { CreateTaskInput, PointEstimate, Status } from "shared/types/schema";
 import Tag from "ui/Tag";
 import SelectModal from "./SelectModal";
-import { CREATE_TASK } from "shared/services/characterMutations";
+import { CREATE_TASK, UPDATE_TASK } from "shared/services/characterMutations";
+import { Task } from "shared/types/schema";
 
 type ModalProps = {
   visible: boolean;
   onClose: () => void;
+  isEdit?: boolean;
+  task?: Task;
 };
 
-const DashboardModal = ({ visible, onClose }: ModalProps) => {
-
+const DashboardModal = ({
+  visible,
+  onClose,
+  isEdit = false,
+  task,
+}: ModalProps) => {
   const [createTask] = useMutation(CREATE_TASK, {
     onCompleted: () => {
       alert("Tarea creada con éxito");
@@ -21,6 +28,16 @@ const DashboardModal = ({ visible, onClose }: ModalProps) => {
     },
     onError: () => {
       alert("Error al crear la tarea");
+    },
+  });
+
+  const [updateTask] = useMutation(UPDATE_TASK, {
+    onCompleted: () => {
+      alert("Tarea editada con éxito");
+      onClose();
+    },
+    onError: () => {
+      alert("Error al editar la tarea");
     },
   });
 
@@ -38,7 +55,7 @@ const DashboardModal = ({ visible, onClose }: ModalProps) => {
     defaultValues: defaultValuesTasks,
   });
 
-  const { getValues, control } = formMethods;
+  const { getValues, control, setValue } = formMethods;
   const [modalEstimate, setModalEstimate] = useState(false);
   const [modalAssignee, setModalAssigne] = useState(false);
   const [modalTag, setModalTag] = useState(false);
@@ -73,19 +90,44 @@ const DashboardModal = ({ visible, onClose }: ModalProps) => {
   };
 
   const handleClickCreate = () => {
-    if (
-      getValues().name !== "" &&
-      getValues().pointEstimate !== PointEstimate.ZERO
-    ) {
-      createTask({ variables: { input: getValues() } });
+    if (isEdit) {
+      const values = {
+        id: task?.id,
+        position: task?.position,
+        ...getValues(),
+      };
+      updateTask({ variables: { input: values } });
+    } else {
+      if (
+        getValues().name !== "" &&
+        getValues().pointEstimate !== PointEstimate.ZERO
+      ) {
+        createTask({ variables: { input: getValues() } });
+      }
     }
   };
+
+  useEffect(() => {
+    if (task) {
+      setValue("assigneeId", task.assignee?.id);
+      setValue("dueDate", task.dueDate);
+      setValue("name", task.name);
+      setValue("pointEstimate", task.pointEstimate);
+      setValue("status", task.status);
+      setValue("tags", task.tags);
+    }
+    // eslint-disable-next-line
+  }, [isEdit]);
 
   return (
     <>
       {visible && (
         <FormProvider {...formMethods}>
-          <ModalOverly>
+          <ModalOverly
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+          >
             <StyledContainer>
               <Controller
                 name="name"
@@ -167,7 +209,7 @@ const DashboardModal = ({ visible, onClose }: ModalProps) => {
                   Cancel
                 </div>
                 <div className="modal_btn" onClick={handleClickCreate}>
-                  Create
+                  {isEdit ? "Edit" : "Create"}
                 </div>
               </Buttons>
             </StyledContainer>

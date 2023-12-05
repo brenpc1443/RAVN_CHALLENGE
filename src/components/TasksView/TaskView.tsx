@@ -1,15 +1,23 @@
+import { useState } from "react";
 import styled from "styled-components";
 import moment from "moment";
 import Icon from "ui/Icon";
 import Tag from "ui/Tag";
 import { Task } from "shared/types/schema";
 import { taskTag } from "./utils/taskTag";
+import TaskViewModal from "./TaskViewModal";
 
 type TaskViewProps = {
   task: Task;
 };
 
 const TaskView = ({ task }: TaskViewProps) => {
+  const [clickOptions, setCilckOptions] = useState(false);
+
+  const onClose = () => {
+    setCilckOptions(false);
+  };
+
   const currentDate = new Date();
   const dueDate = new Date(task.dueDate.toString());
   const differenceDays =
@@ -38,7 +46,24 @@ const TaskView = ({ task }: TaskViewProps) => {
     <StyledContainer>
       <section className="info">
         <p>{task.name}</p>
-        <Icon remixClass="ri-more-line" />
+        <div className="info_options">
+          <div
+            onClick={() => {
+              setCilckOptions(!clickOptions);
+            }}
+          >
+            <Icon remixClass="ri-more-line" />
+          </div>
+          {clickOptions && (
+            <TaskViewModal
+              visible={clickOptions}
+              task={task}
+              onClose={() => {
+                onClose();
+              }}
+            />
+          )}
+        </div>
       </section>
       <section className="timer">
         <p>{`${task.pointEstimate} POINTS`}</p>
@@ -87,6 +112,9 @@ const StyledContainer = styled.div`
     i {
       cursor: pointer;
     }
+  }
+  .info_options {
+    position: relative;
   }
 
   .info,
