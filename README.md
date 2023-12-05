@@ -1,46 +1,58 @@
-# Getting Started with Create React App
+RAVN Challenge - Task Management App
+Welcome to the RAVN Challenge Task Management App! This application provides an intuitive experience for efficiently exploring and adding tasks. The interface looks amazing, and integration with the provided API ensures seamless communication for retrieving and updating task information.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+*Setup and Execution Instructions*
 
-## Available Scripts
+Clone the Repository:
+### git clone https://github.com/brenpc1443/RAVN_CHALLENGE.git
+### cd RAVN_CHALLENGE
 
-In the project directory, you can run:
+Install Dependencies:
+### npm install
 
-### `npm start`
+Run the Application:
+### npm start
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The application will be available at http://localhost:3000.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+*Project Description*
+The Task Management application is designed to simplify daily task management. Users can efficiently explore and add tasks through an intuitive interface. The application follows best software design practices, keeping the codebase clean and modular.
 
-### `npm test`
+Key Features:
+Efficient exploration and visualization of tasks.
+Adding tasks with details such as title and due date.
+Seamless communication with the API to retrieve and update information.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+*Project Structure*
+The project follows the following folder structure:
 
-### `npm run build`
+-app: Contains the main logic of the application.
+-components: Reusable components used throughout the application.
+-pages: Main pages of the application.
+-shared:
+  --assets: Multimedia resources and static files.
+  --context: Application contexts for state management.
+  --routes: Application route configuration.
+  --services: Services for communication with the API.
+  --types: TypeScript types and interfaces used in the project.
+  --utils: Shared utility functions.
+-styles: Global styles and files related to appearance.
+-ui: Specific user interface components.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This structure was chosen to organize the code clearly and modularly.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+*Technologies/Libraries Used*
+apollo-client: Used to interact with GraphQL servers.
+graphql: Query language used to define data structure.
+react: Primary library for building the user interface.
+react-dom: DOM manipulation for React applications.
+react-router-dom: Routing for React applications.
+styled-components: Library for styling React components.
+typescript: JavaScript extension adding static types.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+These technologies were chosen for compatibility, popularity, and efficiency in development.
 
-### `npm run eject`
+*Additional Information*
+⚠️ Important: The project did not finish as expected, and some features may not work as originally planned. We appreciate your understanding and are working to improve and complete the application.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+The application is ready to simplify your task management! If you have any questions or encounter any issues, feel free to contact us. We hope you enjoy using RAVN Challenge!
