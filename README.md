@@ -1,4 +1,4 @@
-### RAVN Challenge - Task Management App
+# RAVN Challenge - Task Management App
 
 Welcome to the RAVN Challenge Task Management App! This application provides an intuitive experience for efficiently exploring and adding tasks. The interface looks amazing, and integration with the provided API ensures seamless communication for retrieving and updating task information.
 
@@ -6,17 +6,17 @@ Welcome to the RAVN Challenge Task Management App! This application provides an 
 
 Clone the Repository:
 
-# git clone https://github.com/brenpc1443/RAVN_CHALLENGE.git
+### git clone https://github.com/brenpc1443/RAVN_CHALLENGE.git
 
-# cd RAVN_CHALLENGE
+### cd RAVN_CHALLENGE
 
 Install Dependencies:
 
-# npm install
+### npm install
 
 Run the Application:
 
-# npm start
+### npm start
 
 The application will be available at http://localhost:3000.
 
@@ -24,7 +24,7 @@ The application will be available at http://localhost:3000.
 
 The Task Management application is designed to simplify daily task management. Users can efficiently explore and add tasks through an intuitive interface. The application follows best software design practices, keeping the codebase clean and modular.
 
-# Key Features:
+### Key Features:
 
 Efficient exploration and visualization of tasks.
 Adding tasks with details such as title and due date.
@@ -45,7 +45,7 @@ shared:\
 -types: TypeScript types and interfaces used in the project.\
 -utils: Shared utility functions.\
 styles: Global styles and files related to appearance.\
-ui: Specific user interface components.\
+ui: Specific user interface components.
 
 This structure was chosen to organize the code clearly and modularly.
 
