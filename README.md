@@ -50,6 +50,14 @@ react-router-dom: Routing for React applications.
 styled-components: Library for styling React components.
 typescript: JavaScript extension adding static types.
 
+*Screenshots of the working application*
+
+![menu](image.png)
+![search](image-1.png)
+![Add task](image-2.png)
+![Task view](image-3.png)
+![Options tasks](image-4.png)
+
 These technologies were chosen for compatibility, popularity, and efficiency in development.
 
 *Additional Information*

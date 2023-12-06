@@ -232,6 +232,7 @@ const ModalOverly = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 90;
 `;
 
 const StyledContainer = styled.div`
